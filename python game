@@ -1,0 +1,82 @@
+#Game code
+
+import cPickle, shelve
+import random
+
+
+#BEGIN Naming section
+player_name = raw_input ("Please enter your name: \n")
+print "thank you " + player_name
+print
+
+#END Naming section
+
+print "Welcome to the word scrabling game"
+print "To play, first enter the difficulty you wish to play at..."
+print "Easy - 3-5 letters per word..."
+print "Moderate - 6-9 letters per word..."
+print "Hard - 10-12 letters per word..."
+file_name = raw_input ("Please enter the difficulty at which you wish to play at \n")
+file_name = file_name + ".txt"
+file = open (file_name, 'r')
+i = 0
+regularwordlist = []
+wordlist = []
+theword =[]
+playerscore = 0
+#This was made by jordy
+
+
+
+
+
+wordlist = file.readlines()
+
+while i<len(wordlist):
+    wordlist[i] = wordlist[i][0:len(wordlist[i]) - 1]
+    i = i + 1
+
+
+b_continue = True
+while b_continue == True:
+    theword_index = random.randint(0, len(wordlist) - 1)
+    theword = list(wordlist[theword_index])
+    random.shuffle(theword, random.random)
+    #wordlist[theword_index] = theword
+
+    print
+    print "your current score is: " + str(playerscore)
+    print
+    #Remove this line when playing
+    print "The original word is:", wordlist[theword_index]
+    #Remove this line when playing
+    print
+    print "The scrambled word is:", "".join(theword)
+    print
+    print
+    print
+    playerguess = raw_input ('What do you guess the word to be:  ')
+    if playerguess == wordlist[theword_index]:
+        playerscore = playerscore + 100
+    else:
+        print
+        print "Sorry, your guess was incorrect and you have lost 1 point"
+        playerscore = playerscore - 50
+        print
+        
+        
+    print "--------------------------"
+    print "Your score is currently..."
+    print playerscore
+    print "--------------------------"
+    print
+    x = raw_input("Do you want to continue y/n :")
+    if x == "n":
+         b_continue = False
+         print "Thanks for playing"
+         print
+         #Creating a high score list and saving to it
+    
+         
+
+        
